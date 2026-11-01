@@ -140,10 +140,6 @@ Switch instantly between Perspective and True Orthographic CAD Camera (<kbd>O</k
 ### Installation & Run
 
 ```bash
-# Clone the repository
-git clone https://github.com/Rohitkumar-3103/Build_Architecture.git
-cd Build_Architecture
-
 # Install dependencies
 npm install
 

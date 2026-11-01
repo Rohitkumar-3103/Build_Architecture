@@ -1,0 +1,366 @@
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.9);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 233, 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 0.7);
+}
+
+/* Glassmorphism UI - Modern Architectural Daylight Theme */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  box-shadow: 0 12px 35px -8px rgba(15, 23, 42, 0.12), 0 0 20px -3px rgba(14, 165, 233, 0.15);
+  color: #0f172a;
+}
+
+.glass-panel-subtle {
+  background: rgba(248, 250, 252, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  color: #1e293b;
+}
+
+.glass-button {
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid rgba(14, 165, 233, 0.32);
+  color: #1e293b;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-button:hover {
+  background: rgba(224, 242, 254, 0.95);
+  border-color: rgba(2, 132, 199, 0.6);
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.25);
+  color: #0369a1;
+}
+
+/* Subtle blueprint grid overlay for CAD mode */
+.blueprint-grid-bg {
+  background-image: 
+    linear-gradient(rgba(14, 165, 233, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ==========================================================================
+   PERMANENT ARCHITECTURAL DAYLIGHT THEME
+   ========================================================================== */
+
+.light-theme {
+  color-scheme: light;
+}
+
+/* High Contrast Light Typography */
+.light-theme .text-white {
+  color: #0f172a !important;
+}
+.light-theme .text-slate-100 {
+  color: #0f172a !important;
+}
+.light-theme .text-slate-200 {
+  color: #1e293b !important;
+}
+.light-theme .text-slate-300 {
+  color: #334155 !important;
+}
+.light-theme .text-slate-400 {
+  color: #475569 !important;
+}
+.light-theme .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Cyan & Sky accents tuned for crisp contrast on light backgrounds */
+.light-theme .text-cyan-400,
+.light-theme .text-sky-400 {
+  color: #0284c7 !important;
+}
+.light-theme .text-cyan-300,
+.light-theme .text-sky-300 {
+  color: #0369a1 !important;
+}
+
+/* Automatic conversion of dark slate containers to clean light surfaces */
+.light-theme [class*="bg-slate-900"],
+.light-theme [class*="bg-slate-950"] {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+}
+
+.light-theme [class*="bg-slate-800"] {
+  background-color: rgba(241, 245, 249, 0.92) !important;
+}
+
+.light-theme [class*="border-slate-800"],
+.light-theme [class*="border-slate-700"] {
+  border-color: rgba(203, 213, 225, 0.8) !important;
+}
+
+/* Keep active buttons and badges crisp with dark text */
+.light-theme .bg-gradient-to-r.from-sky-500.to-cyan-400,
+.light-theme .bg-gradient-to-r.from-sky-500.via-cyan-400,
+.light-theme .bg-sky-500,
+.light-theme .bg-cyan-500,
+.light-theme .bg-amber-400 {
+  color: #020617 !important;
+}
+
+/* ==========================================================================
+   TOP CONTROL TOOLBAR
+   ========================================================================== */
+.light-theme .header-model-select {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(14, 165, 233, 0.45) !important;
+  color: #0f172a !important;
+}
+.light-theme .header-model-select select {
+  color: #0f172a !important;
+}
+.light-theme .header-model-select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.light-theme .header-dashboard-btn {
+  background-color: rgba(224, 242, 254, 0.95) !important;
+  border-color: rgba(2, 132, 199, 0.45) !important;
+  color: #0284c7 !important;
+}
+.light-theme .header-dashboard-btn:hover {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+/* ==========================================================================
+   STEP GUIDE PANEL
+   ========================================================================== */
+.light-theme .step-guide-voice-box {
+  background: rgba(240, 249, 255, 0.95) !important;
+  border-color: rgba(14, 165, 233, 0.35) !important;
+}
+
+.light-theme .step-guide-desc-box {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+  color: #1e293b !important;
+}
+
+.light-theme .step-guide-tool-tag {
+  background-color: rgba(224, 242, 254, 0.95) !important;
+  border-color: rgba(14, 165, 233, 0.45) !important;
+  color: #0369a1 !important;
+  font-weight: 600 !important;
+}
+
+.light-theme .step-guide-mat-tag {
+  background-color: rgba(209, 250, 229, 0.95) !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  color: #065f46 !important;
+  font-weight: 600 !important;
+}
+
+.light-theme .step-guide-safety-box {
+  background-color: rgba(254, 243, 199, 0.95) !important;
+  border-color: rgba(245, 158, 11, 0.45) !important;
+  color: #92400e !important;
+  font-weight: 600 !important;
+}
+
+.light-theme .step-guide-back-btn {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #1e293b !important;
+}
+
+/* ==========================================================================
+   BIM EXECUTION SEQUENCE SIDEBAR
+   ========================================================================== */
+.light-theme .sidebar-phase-completed {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  color: #0f172a !important;
+}
+.light-theme .sidebar-phase-completed:hover {
+  background-color: rgba(241, 245, 249, 1) !important;
+  border-color: rgba(203, 213, 225, 1) !important;
+}
+
+.light-theme .sidebar-phase-current {
+  background-color: rgba(224, 242, 254, 0.95) !important;
+  border: 1.5px solid #0284c7 !important;
+  box-shadow: 0 0 15px rgba(2, 132, 199, 0.2) !important;
+}
+
+.light-theme .sidebar-phase-pending {
+  background-color: rgba(241, 245, 249, 0.65) !important;
+  border: 1px solid rgba(226, 232, 240, 0.6) !important;
+}
+
+/* ==========================================================================
+   TIMELINE HUD
+   ========================================================================== */
+.light-theme .timeline-kpi-pill {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+  border: 1px solid rgba(203, 213, 225, 0.85) !important;
+  color: #1e293b !important;
+}
+.light-theme .timeline-kpi-pill span:first-child {
+  color: #64748b !important;
+}
+
+/* ==========================================================================
+   ARCHITECTURE PROJECTS DASHBOARD MODAL
+   ========================================================================== */
+.light-theme .catalog-modal-backdrop {
+  background-color: rgba(248, 250, 252, 0.98) !important;
+  color: #0f172a !important;
+}
+
+.light-theme .catalog-search-input {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.light-theme .catalog-search-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+.light-theme .catalog-card-active {
+  background: linear-gradient(to bottom, #ffffff, #f0f9ff) !important;
+  border: 2px solid #0284c7 !important;
+  box-shadow: 0 12px 35px -5px rgba(2, 132, 199, 0.22), 0 0 20px rgba(14, 165, 233, 0.2) !important;
+  color: #0f172a !important;
+}
+
+.light-theme .catalog-card-inactive {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08) !important;
+  color: #0f172a !important;
+}
+.light-theme .catalog-card-inactive:hover {
+  background: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 14px 35px -5px rgba(2, 132, 199, 0.2) !important;
+}
+
+.light-theme .catalog-card-title {
+  color: #0f172a !important;
+}
+.light-theme .catalog-card-tagline {
+  color: #475569 !important;
+}
+
+.light-theme .catalog-badge-pill {
+  background-color: rgba(224, 242, 254, 0.95) !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+  color: #0284c7 !important;
+}
+
+.light-theme .catalog-category-label {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+/* CAD blueprint vector drawing screen inside cards - Crisp Architectural Blueprint Paper */
+.light-theme .catalog-cad-box {
+  background-color: #f0f7ff !important;
+  border: 1px solid rgba(186, 230, 253, 0.9) !important;
+  box-shadow: inset 0 2px 8px rgba(14, 165, 233, 0.08) !important;
+}
+
+/* Custom Architectural Range Slider (EXP exploded view disassembly) */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #cbd5e1 !important;
+  height: 6px !important;
+  border-radius: 9999px !important;
+  outline: none !important;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 50% !important;
+  background: #0284c7 !important;
+  cursor: pointer !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.5) !important;
+  transition: transform 0.15s ease, background-color 0.15s ease !important;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2) !important;
+  background: #0369a1 !important;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 50% !important;
+  background: #0284c7 !important;
+  cursor: pointer !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.5) !important;
+}
+
+/* Engineering Specifications Grid */
+.light-theme .catalog-spec-grid {
+  border-color: #e2e8f0 !important;
+}
+.light-theme .catalog-spec-box {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+}
+.light-theme .catalog-spec-box span:first-child {
+  color: #64748b !important;
+}
+.light-theme .spec-val-area {
+  color: #0f172a !important;
+}
+.light-theme .spec-val-cost {
+  color: #059669 !important;
+}
+.light-theme .spec-val-milestones {
+  color: #0284c7 !important;
+}
+.light-theme .spec-val-type {
+  color: #b45309 !important;
+}
+
+/* Dashboard Action Buttons */
+.light-theme .catalog-btn-secondary {
+  background: rgba(224, 242, 254, 0.95) !important;
+  color: #0284c7 !important;
+  border: 1px solid rgba(2, 132, 199, 0.4) !important;
+  font-weight: 700 !important;
+}
+.light-theme .catalog-btn-secondary:hover {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+.light-theme .catalog-btn-tertiary {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+.light-theme .catalog-btn-tertiary:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}

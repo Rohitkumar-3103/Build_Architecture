@@ -256,6 +256,17 @@ export class BuildingModel {
   }
 
   private applyTransformations() {
+    // Pre-calculate component count and order per phase for fluid sequential micro-staggering
+    const phasePartCounts = new Map<number, number>();
+    const phasePartIndices = new Map<PhasePart, number>();
+
+    this.parts.forEach(part => {
+      const pId = part.data.phaseId;
+      const count = phasePartCounts.get(pId) || 0;
+      phasePartIndices.set(part, count);
+      phasePartCounts.set(pId, count + 1);
+    });
+
     this.parts.forEach(part => {
       const pId = part.data.phaseId;
       const basePos = this.basePositions.get(part.mesh)!;
@@ -294,20 +305,100 @@ export class BuildingModel {
         part.mesh.position.copy(basePos);
         part.mesh.scale.set(0.001, 0.001, 0.001);
       } else if (this.currentProgress >= endProgress) {
-        // Fully completed phase
+        // Fully completed phase: locked rigidly into CAD coordinates
         part.mesh.visible = true;
         part.mesh.scale.set(1, 1, 1);
         part.mesh.position.copy(basePos).add(explodeOffset);
       } else {
         // Actively assembling in range [startProgress, endProgress]
-        part.mesh.visible = true;
-        const fraction = (this.currentProgress - startProgress) / (endProgress - startProgress);
-        const ease = 1 - Math.pow(1 - fraction, 3); // easeLand
+        const rawFraction = (this.currentProgress - startProgress) / (endProgress - startProgress);
 
-        // Assembly fly-in motion from above
-        const assemblyOffset = new THREE.Vector3(0, (1 - ease) * 5.0, 0);
+        // Sequence components within this phase across a smooth wave
+        const partIdx = phasePartIndices.get(part) || 0;
+        const totalInPhase = Math.max(1, phasePartCounts.get(pId) || 1);
+        // Stagger factor up to 0.32 so parts flow in sequentially but all land before phase completion
+        const staggerFactor = totalInPhase > 1 ? 0.32 : 0;
+        const partNormalizedOffset = (partIdx / totalInPhase) * staggerFactor;
+        const fraction = Math.max(0, Math.min(1, (rawFraction - partNormalizedOffset) / (1 - staggerFactor)));
+
+        if (fraction <= 0) {
+          part.mesh.visible = false;
+          part.mesh.position.copy(basePos);
+          part.mesh.scale.set(0.001, 0.001, 0.001);
+          return;
+        }
+
+        part.mesh.visible = true;
+
+        // Kinematic physical trajectory tailored to architectural component typology:
+        const cat = part.data.category;
+        const assemblyOffset = new THREE.Vector3();
+        let scaleX = 1;
+        let scaleY = 1;
+        let scaleZ = 1;
+
+        if (cat === 'Foundation') {
+          // Foundation elements rise firmly from underground bedrock (-3.5m) and anchor into place
+          const ease = 1 - Math.pow(1 - fraction, 3);
+          assemblyOffset.set(0, -(1 - ease) * 3.5, 0);
+          scaleX = Math.min(1, ease * 1.1);
+          scaleY = ease;
+          scaleZ = Math.min(1, ease * 1.1);
+        } else if (cat === 'Structure') {
+          // Structural steel / timber skeleton: erected with crane descent and cable sway damping
+          const ease = 1 - Math.pow(1 - fraction, 3.2);
+          const sway = Math.sin((1 - fraction) * Math.PI * 2.2) * (1 - fraction) * 0.15;
+          assemblyOffset.set(sway, (1 - ease) * 6.5, sway);
+          scaleX = Math.min(1, ease * 1.05);
+          scaleY = ease;
+          scaleZ = Math.min(1, ease * 1.05);
+        } else if (cat === 'Slabs') {
+          // Horizontal composite decks lowered flat from 4-point crane rigging
+          const ease = 1 - Math.pow(1 - fraction, 3);
+          const sway = Math.cos((1 - fraction) * Math.PI * 1.8) * (1 - fraction) * 0.1;
+          assemblyOffset.set(sway, (1 - ease) * 5.2, 0);
+          scaleX = ease;
+          scaleY = Math.min(1, ease * 1.2);
+          scaleZ = ease;
+        } else if (cat === 'CurtainWall') {
+          // Facade glass panels hoisted down & pulled inward from exterior perimeter
+          const ease = 1 - Math.pow(1 - fraction, 3);
+          const horizontalNorm = part.data.explodeVector.clone().normalize();
+          horizontalNorm.y = 0;
+          if (horizontalNorm.lengthSq() < 0.01) horizontalNorm.set(0, 0, 1);
+          assemblyOffset.copy(horizontalNorm.multiplyScalar((1 - ease) * 2.6));
+          assemblyOffset.y += (1 - ease) * 4.6;
+          scaleX = ease;
+          scaleY = ease;
+          scaleZ = ease;
+        } else if (cat === 'Roof') {
+          // Roof trusses, canopies, standing seams and clerestory lanterns lower from high sky
+          const ease = 1 - Math.pow(1 - fraction, 3);
+          assemblyOffset.set(0, (1 - ease) * 8.0, 0);
+          scaleX = ease;
+          scaleY = ease;
+          scaleZ = ease;
+        } else if (cat === 'Finishes') {
+          // Landscaping, living trees, vegetation, lighting & pools pop with organic spring bounce
+          const c1 = 1.6;
+          const c3 = c1 + 1;
+          const bounce = 1 + c3 * Math.pow(fraction - 1, 3) + c1 * Math.pow(fraction - 1, 2);
+          const ease = Math.max(0, bounce);
+          assemblyOffset.set(0, (1 - Math.min(1, fraction)) * 1.8, 0);
+          scaleX = ease;
+          scaleY = ease;
+          scaleZ = ease;
+        } else {
+          // Interior partitions, MEP risers, joinery and stairs
+          const ease = 1 - Math.pow(1 - fraction, 3);
+          assemblyOffset.set(0, (1 - ease) * 4.0, 0);
+          scaleX = ease;
+          scaleY = ease;
+          scaleZ = ease;
+        }
+
         part.mesh.position.copy(basePos).add(assemblyOffset).add(explodeOffset);
-        part.mesh.scale.set(ease, ease, ease);
+        part.mesh.scale.set(scaleX, scaleY, scaleZ);
       }
     });
   }

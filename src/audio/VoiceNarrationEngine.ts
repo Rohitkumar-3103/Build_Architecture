@@ -230,6 +230,22 @@ export class VoiceNarrationEngine {
     this.synth.speak(this.currentUtterance);
   }
 
+  public speakCompletion(productName: string) {
+    if (!this.enabled || !this.synth) return;
+    this.stop();
+    const text = `Construction complete! ${productName} is fully assembled across all eight engineering milestones.`;
+    this.currentUtterance = new SpeechSynthesisUtterance(text);
+    if (this.preferredVoice) {
+      this.currentUtterance.voice = this.preferredVoice;
+    }
+    this.currentUtterance.rate = this.speechRate;
+    this.currentUtterance.pitch = 1.05;
+    this.currentUtterance.onstart = () => this.notify(true, text);
+    this.currentUtterance.onend = () => this.notify(false, '');
+    this.currentUtterance.onerror = () => this.notify(false, '');
+    this.synth.speak(this.currentUtterance);
+  }
+
   public stop() {
     if (this.synth) {
       this.synth.cancel();

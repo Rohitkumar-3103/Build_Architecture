@@ -75,13 +75,13 @@ export const App: React.FC = () => {
     }
   };
 
-  // Read step aloud when step changes in Step Guide mode
+  // Read step aloud when step changes in Step Guide mode or manual stepping
   const currentPhaseIndex = Math.min(currentPhases.length - 1, Math.floor(progress));
   useEffect(() => {
-    if (buildMode === 'step' && voiceEnabled) {
+    if (buildMode === 'step' && voiceEnabled && !isPlaying) {
       speakCurrentStep(currentPhaseIndex, false);
     }
-  }, [currentPhaseIndex, productId, buildMode, voiceEnabled]);
+  }, [currentPhaseIndex, productId, buildMode, voiceEnabled, isPlaying]);
 
   // Playback Loop
   useEffect(() => {
@@ -111,12 +111,18 @@ export const App: React.FC = () => {
             origin: { y: 0.6 }
           });
           soundEngine.playCompletionChime();
+          if (voiceEnabled) {
+            voiceEngine.speakCompletion(activeProduct.name);
+          }
           return currentPhases.length - 1;
         }
 
-        // Mechanical placement audio when crossing an integer milestone
+        // Mechanical placement audio and voice milestone when crossing an integer boundary
         if (Math.floor(next) > Math.floor(prev)) {
           soundEngine.playPlacementThud();
+          if (voiceEnabled) {
+            speakCurrentStep(Math.floor(next), false);
+          }
         }
 
         return next;
@@ -132,7 +138,7 @@ export const App: React.FC = () => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isPlaying, playbackSpeed, currentPhases.length]);
+  }, [isPlaying, playbackSpeed, currentPhases.length, voiceEnabled, activeProduct.name]);
 
   // Handlers
   const handleSelectProduct = (newProductId: string) => {
@@ -149,7 +155,7 @@ export const App: React.FC = () => {
     setIsPlaying(false);
     setSelectedComponent(null);
     soundEngine.playModeSwitch();
-    if (voiceEnabled && buildMode === 'step') {
+    if (voiceEnabled) {
       speakCurrentStep(0, true, newProductId);
     }
   };
@@ -197,6 +203,11 @@ export const App: React.FC = () => {
   const handleTogglePlay = () => {
     if (progress >= currentPhases.length - 1) {
       setProgress(0);
+      if (voiceEnabled) {
+        speakCurrentStep(0, true);
+      }
+    } else if (!isPlaying && voiceEnabled) {
+      speakCurrentStep(Math.floor(progress), false);
     }
     soundEngine.playStepClick();
     setIsPlaying((prev) => !prev);

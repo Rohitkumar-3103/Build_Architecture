@@ -14,6 +14,7 @@ import { buildPhase7 } from './phases/Phase7_Finishes';
 
 import { PAVILION_PHASES, PAVILION_CALLOUTS, buildPavilionModel } from './products/ProductPavilion';
 import { CABIN_PHASES, CABIN_CALLOUTS, buildCabinModel } from './products/ProductCabin';
+import { PAGODA_PHASES, PAGODA_CALLOUTS, buildPagodaModel } from './products/ProductPagoda';
 import { 
   buildHighriseModel, 
   buildMuseumModel, 
@@ -317,6 +318,19 @@ export const PRODUCTS: ArchitectureProductDefinition[] = [
     phases: getPhasesForProduct('church'),
     callouts: getCalloutsForProduct('church'),
     build: buildThinShellChapelModel
+  },
+  // 21. Mass Timber Pagoda Tower
+  {
+    id: 'pagoda',
+    name: 'Mass Timber Pagoda Tower',
+    tagline: 'The Five-Tier Beacon — Glulam Spine, Slate Hip Roofs & Gilded Finial',
+    badge: 'TEMPLE TOWER',
+    areaM2: 420,
+    estCost: '$4,800,000',
+    category: 'Cultural',
+    phases: PAGODA_PHASES,
+    callouts: PAGODA_CALLOUTS,
+    build: buildPagodaModel
   }
 ];
 

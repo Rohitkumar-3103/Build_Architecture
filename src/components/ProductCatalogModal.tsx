@@ -482,6 +482,32 @@ export const ProductCatalogModal: React.FC<ProductCatalogModalProps> = ({
             <line x1="110" y1="18" x2="110" y2="8" stroke="#0284c7" strokeWidth="1.8" />
           </svg>
         );
+      case 'pagoda':
+        return (
+          <svg viewBox="0 0 220 140" className="w-full h-full relative z-10 text-amber-700 stroke-current fill-none stroke-[1.6]">
+            <line x1="10" y1="120" x2="210" y2="120" strokeDasharray="3 3" opacity="0.4" />
+            {/* Stone Podium */}
+            <rect x="60" y="118" width="100" height="4" fill="#e2e8f0" stroke="#64748b" />
+            {/* Central Shin-Bashira Column */}
+            <line x1="110" y1="30" x2="110" y2="118" strokeDasharray="3 3" opacity="0.5" />
+            {/* Five Tiers: body + hip roof */}
+            <rect x="80" y="106" width="60" height="12" fill="#fef3c7" fillOpacity="0.6" stroke="#b45309" />
+            <polygon points="60,106 160,106 135,99 85,99" fill="#cbd5e1" stroke="#475569" strokeWidth="2" />
+            <rect x="85" y="87" width="50" height="12" fill="#fef3c7" fillOpacity="0.6" stroke="#b45309" />
+            <polygon points="65,87 155,87 130,80 90,80" fill="#cbd5e1" stroke="#475569" strokeWidth="2" />
+            <rect x="90" y="68" width="40" height="12" fill="#fef3c7" fillOpacity="0.6" stroke="#b45309" />
+            <polygon points="70,68 150,68 125,61 95,61" fill="#cbd5e1" stroke="#475569" strokeWidth="2" />
+            <rect x="95" y="49" width="30" height="12" fill="#fef3c7" fillOpacity="0.6" stroke="#b45309" />
+            <polygon points="75,49 145,49 120,42 100,42" fill="#cbd5e1" stroke="#475569" strokeWidth="2" />
+            <rect x="100" y="30" width="20" height="12" fill="#fef3c7" fillOpacity="0.6" stroke="#b45309" />
+            <polygon points="80,30 140,30 115,23 105,23" fill="#cbd5e1" stroke="#475569" strokeWidth="2" />
+            {/* Sorin Finial with Rings */}
+            <line x1="110" y1="23" x2="110" y2="6" stroke="#d97706" strokeWidth="2" />
+            <line x1="106" y1="20" x2="114" y2="20" stroke="#d97706" />
+            <line x1="107" y1="16" x2="113" y2="16" stroke="#d97706" />
+            <line x1="108" y1="12" x2="112" y2="12" stroke="#d97706" />
+          </svg>
+        );
       case 'church':
         return (
           <svg viewBox="0 0 220 140" className="w-full h-full relative z-10 text-sky-600 stroke-current fill-none stroke-[1.6]">
@@ -533,11 +559,11 @@ export const ProductCatalogModal: React.FC<ProductCatalogModalProps> = ({
               </h1>
               <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-700 border border-cyan-400/30">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
-                20 MASTER BLUEPRINTS
+                {PRODUCTS.length} MASTER BLUEPRINTS
               </span>
             </div>
             <p className="text-xs sm:text-sm text-slate-400 font-mono mt-0.5">
-              Enterprise Architectural Portfolio • 20 Real-Time BIM Assembly Structures & Voice Narration
+              Enterprise Architectural Portfolio • {PRODUCTS.length} Real-Time BIM Assembly Structures &amp; Voice Narration
             </p>
           </div>
         </div>
@@ -578,7 +604,7 @@ export const ProductCatalogModal: React.FC<ProductCatalogModalProps> = ({
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Search 20 models by name or typology..."
+            placeholder={`Search ${PRODUCTS.length} models by name or typology...`}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-slate-900/90 catalog-search-input border border-slate-700/80 focus:border-cyan-400 text-white placeholder-slate-500 text-xs font-mono rounded-xl pl-9 pr-4 py-2 outline-none transition-colors"

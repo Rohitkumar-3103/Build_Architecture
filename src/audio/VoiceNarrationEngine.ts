@@ -187,7 +187,7 @@ export class VoiceNarrationEngine {
     if (productId === 'pavilion') return PAVILION_VOICE_SCRIPTS[clampedId] || PAVILION_VOICE_SCRIPTS[0];
     if (productId === 'cabin') return CABIN_VOICE_SCRIPTS[clampedId] || CABIN_VOICE_SCRIPTS[0];
 
-    // Dynamic tailored narration for any of the 20 master architectural models
+    // Dynamic tailored narration for all master architectural models
     const title = phaseTitle || `Stage 0${clampedId + 1}`;
     const name = productName || 'Architectural Structure';
     const detail = phaseDesc || 'Executing structural engineering tolerances and ISO quality control.';

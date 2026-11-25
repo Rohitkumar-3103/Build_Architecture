@@ -2,13 +2,13 @@
 
 An interactive, high-fidelity 3D Architectural Construction & Assembly Visualizer built with **React 19**, **Three.js**, **TypeScript**, and **Tailwind CSS**.
 
-Featuring **20 Master Architectural Blueprints**, multi-phase BIM LOD-400 structural animation, synchronized spoken voice narration, true orthographic CAD projections, dynamic SVG callout leader lines, and multi-axis exploded view disassembly.
+Featuring **21 Master Architectural Blueprints**, multi-phase BIM LOD-400 structural animation, synchronized spoken voice narration, true orthographic CAD projections, dynamic SVG callout leader lines, and multi-axis exploded view disassembly.
 
 ---
 
-## 🏛️ Master Architectural Portfolio (20 Production Blueprints)
+## 🏛️ Master Architectural Portfolio (21 Production Blueprints)
 
-Explore an enterprise portfolio of 20 distinct architectural structures spanning **63,140 m²** across five typologies. Each building features procedural 3D models, technical 2D vector CAD elevation drawings, and full 8-phase construction workflows:
+Explore an enterprise portfolio of 21 distinct architectural structures spanning **63,560 m²** across five typologies. Each building features procedural 3D models, technical 2D vector CAD elevation drawings, and full 8-phase construction workflows:
 
 | # | Project Name | Typology | Gross Area | Est. Budget | Architectural Key Features |
 |:---:|:---|:---|:---:|:---:|:---|
@@ -32,6 +32,7 @@ Explore an enterprise portfolio of 20 distinct architectural structures spanning
 | **18** | **Mass Timber CLT Office Block** | Commercial | $4,800\,\text{m}^2$ | \$12,600,000 | 5-ply Cross-Laminated Timber panels, exposed glulam post-and-beam grid, curtain wall envelope |
 | **19** | **Cor-Ten Steel Coastal Watchtower** | Specialty | $95\,\text{m}^2$ | \$680,000 | Weathering Cor-Ten steel skin, internal helical stair tower, cantilevered observation balcony |
 | **20** | **Hyperbolic Concrete Thin-Shell Chapel** | Cultural | $680\,\text{m}^2$ | \$3,450,000 | 120mm saddle hyperbolic paraboloid shell, perimeter glass curtain wall, altar with cross |
+| **21** | **Mass Timber Pagoda Tower** | Cultural | $420\,\text{m}^2$ | \$4,800,000 | 5-tier glulam central spine, stepped granite podium, slate hip roofs & gilded sorin finial |
 
 ---
 
